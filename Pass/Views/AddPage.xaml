@@ -1,0 +1,45 @@
+﻿<Page
+    x:Class="App1.Views.AddPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:App1.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    mc:Ignorable="d"
+    NavigationCacheMode="Required"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    
+
+    <Grid>
+        
+        <StackPanel>
+            <TextBlock Text="Add Account" Style="{StaticResource TitleTextBlockStyle}"/>
+            <TextBox x:Name="SiteName" Header= "Site Name" Margin="0,24,0,0" 
+                     MaxLength="320" Width="400" 
+                     HorizontalAlignment="Left" 
+                     InputScope="Text"/>
+            <TextBox x:Name="AccountName" Header= "Account Name" Margin="0,24,0,0" 
+                     MaxLength="320" Width="400" 
+                     HorizontalAlignment="Left" 
+                     InputScope="Text"/>
+            <TextBox x:Name="Email" Header= "Email" Margin="0,24,0,0" 
+                     MaxLength="320" Width="400" 
+                     HorizontalAlignment="Left" 
+                     InputScope="EmailNameOrAddress"/>
+            <TextBox x:Name="Password" Header= "Password" Margin="0,24,0,0" 
+                     MaxLength="320" Width="400" 
+                     HorizontalAlignment="Left" 
+                     InputScope="Password"/>
+            <TextBox x:Name="Description" Header= "Description" Margin="0,24,0,0" 
+                     MaxLength="320" Width="400" 
+                     HorizontalAlignment="Left" 
+                     InputScope="Text"/>
+            <Button x:Name="saveButton"
+                MinWidth="200"
+                MaxWidth="200"
+                >Unclok</Button>
+        </StackPanel>
+        
+    </Grid>
+</Page>

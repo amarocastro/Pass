@@ -14,8 +14,9 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using App1.Views;
 
-namespace Pass
+namespace App1
 {
     /// <summary>
     /// Proporciona un comportamiento específico de la aplicación para complementar la clase Application predeterminada.
@@ -59,6 +60,14 @@ namespace Pass
                 Window.Current.Content = rootFrame;
             }
 
+            /*MainPage shell = Window.Current.Content as MainPage ?? new MainPage();
+            Window.Current.Content = shell;*/
+
+            /*if(shell.AppFrame.Content == null)
+            {
+                shell.AppFrame.Navigate(typeof(MainPage));
+            }*/
+
             if (e.PrelaunchActivated == false)
             {
                 if (rootFrame.Content == null)
@@ -71,6 +80,7 @@ namespace Pass
                 // Asegurarse de que la ventana actual está activa.
                 Window.Current.Activate();
             }
+            
         }
 
         /// <summary>
