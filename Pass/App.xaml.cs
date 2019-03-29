@@ -14,9 +14,10 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using App1.Views;
+using Windows.UI.ViewManagement;
+using Pass.Views;
 
-namespace App1
+namespace Pass
 {
     /// <summary>
     /// Proporciona un comportamiento específico de la aplicación para complementar la clase Application predeterminada.
@@ -27,10 +28,13 @@ namespace App1
         /// Inicializa el objeto de aplicación Singleton. Esta es la primera línea de código creado
         /// ejecutado y, como tal, es el equivalente lógico de main() o WinMain().
         /// </summary>
+        
+        
         public App()
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+            
         }
 
         /// <summary>
@@ -58,6 +62,7 @@ namespace App1
 
                 // Poner el marco en la ventana actual.
                 Window.Current.Content = rootFrame;
+               
             }
 
             /*MainPage shell = Window.Current.Content as MainPage ?? new MainPage();
@@ -75,7 +80,7 @@ namespace App1
                     // Cuando no se restaura la pila de navegación, navegar a la primera página,
                     // configurando la nueva página pasándole la información requerida como
                     //parámetro de navegación
-                    rootFrame.Navigate(typeof(MainPage), e.Arguments);
+                    rootFrame.Navigate(typeof(LoginPage), e.Arguments);
                 }
                 // Asegurarse de que la ventana actual está activa.
                 Window.Current.Activate();
