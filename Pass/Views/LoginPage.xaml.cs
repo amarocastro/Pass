@@ -16,7 +16,7 @@ namespace Pass.Views
     public sealed partial class LoginPage : Page
     {
         private User _user;
-
+        
         public LoginPage()
         {
             this.InitializeComponent();
@@ -60,6 +60,7 @@ namespace Pass.Views
                 if (await MicrosoftLoginHelper.CreatePassKeyAsync(PasswordTextBox.Text))
                 {
                    Debug.WriteLine("Successfully signed in with Microsoft Passport!");
+                   Frame.Navigate(typeof(MainPage), _user);
                 }
             }
             else

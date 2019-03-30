@@ -17,7 +17,7 @@
                TextAlignment="Center" VerticalAlignment="Center" FontSize="16"/>
             <TextBox x:Name="PasswordTextBox" Margin="4" Width="250"/>
             <Button x:Name="PassSignInButton" Content="Login" Background="DodgerBlue" Foreground="White"
-        Click="PassportSignInButton_Click" Width="80" HorizontalAlignment="Center" Margin="0,20"/>
+        Click="PassSignInButton_Click" Width="80" HorizontalAlignment="Center" Margin="0,20"/>
             <TextBlock Text="First time in Passs?"
                 TextAlignment="Center" VerticalAlignment="Center" FontSize="16"/>
             <TextBlock x:Name="RegisterButtonTextBlock" Text="Register now"

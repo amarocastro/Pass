@@ -3,16 +3,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Pass.Views;
+using Pass.Model;
 
 // La plantilla de elemento Página en blanco está documentada en https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0xc0a
 
@@ -35,16 +29,27 @@ namespace Pass
 
         /// Gets the navigation frame instance.
         public Frame AppFrame => this.ContentFrame;
-
-         /// Navigates to the page corresponding to the tapped item.
+        private User _activeUser;
+        /// Navigates to the page corresponding to the tapped item.
         /// 
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            _activeUser = (User)e.Parameter;
+        }
+
         private void NavViewItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
         {
             var label = args.InvokedItem as string;
             var pageType =
                 label == "Home" ? typeof(HomePage) :
                 label == "Add" ? typeof(AddPage) : null;
-            if (pageType != null && pageType != AppFrame.CurrentSourcePageType)
+
+            if (args.IsSettingsInvoked)
+            {
+                AppFrame.Navigate(typeof(SettingsPage), _activeUser);
+            }
+            else if (pageType != null && pageType != AppFrame.CurrentSourcePageType)
             {
                 AppFrame.Navigate(pageType);
             }

@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using System.Diagnostics;
 using Windows.Security.Credentials;
+using Pass.Model;
 
 namespace Pass.Utils
 {
@@ -55,6 +56,21 @@ namespace Pass.Utils
             }
 
             return false;
+        }
+
+        public static async void RemovePassportAccountAsync(User user)
+        {
+            // Open the account with Passport
+            KeyCredentialRetrievalResult keyOpenResult = await KeyCredentialManager.OpenAsync(user.Username);
+
+            if (keyOpenResult.Status == KeyCredentialStatus.Success)
+            {
+                // In the real world you would send key information to server to unregister
+                //e.g. RemovePassportAccountOnServer(account);
+            }
+
+            // Then delete the account from the machines list of Passport Accounts
+            await KeyCredentialManager.DeleteAsync(user.Username);
         }
 
     }
