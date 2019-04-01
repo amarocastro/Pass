@@ -15,6 +15,7 @@ namespace Pass.Utils
         private static string _accountListPath = Path.Combine(
                     ApplicationData.Current.LocalFolder.Path, USER_ACCOUNT_LIST_NAME);
         public static List<User> UserList = new List<User>();
+        
 
         public static async void SaveUserListAsync()
         {

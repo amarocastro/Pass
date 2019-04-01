@@ -22,11 +22,6 @@ namespace Pass.Views
             this.InitializeComponent();
         }
 
-        private void RegisterButtonTextBlock_OnPointerPressed(object sender, PointerRoutedEventArgs e)
-        {
-            ErrorMessage.Text = "";
-        }
-
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             // Check Microsoft Passport is setup and available on this machine
@@ -67,6 +62,12 @@ namespace Pass.Views
             {
                 ErrorMessage.Text = "Invalid Credentials";
             }
+        }
+
+        private void RegisterButtonTextBlock_OnPointerPressed(object sender, PointerRoutedEventArgs e)
+        {
+            ErrorMessage.Text = "";
+            Frame.Navigate(typeof(RegisterPage));
         }
     }
 }
