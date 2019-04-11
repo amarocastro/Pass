@@ -9,7 +9,7 @@ namespace Pass.Utils
 {
     public class CredentialHelper
     {
-        private PasswordVault passwordVault { get; set; }
+        private PasswordVault passwordVault = new PasswordVault();
         private string resourceName = "PassApp";
 
         public void Add_Credential(String username, String password)
@@ -18,14 +18,50 @@ namespace Pass.Utils
             passwordVault.Add(credential);
         }
 
-        public IReadOnlyList<PasswordCredential> find_credential_byUser(User user)
+        private PasswordCredential Find_credential_byUser(String username)
         {
-           IReadOnlyList<PasswordCredential> credential_list = passwordVault.FindAllByUserName(user.Username);
+            PasswordCredential credential = null;
+            credential = passwordVault.Retrieve(resourceName,username);
 
-            return credential_list;
+            return credential;
         }
 
-        public void 
+        public bool validateUser(string username, string password)
+        {
+            bool is_valid;
+            PasswordCredential credential = Find_credential_byUser(username);
+            string pass = credential.Password;
+
+            if(password == pass)
+            {
+                is_valid = true;
+            }
+            else
+            {
+                is_valid = false;
+            }
+
+            return is_valid;
+
+
+        }
+
+        public Boolean Delete_Credential(String username, String password)
+        {
+            PasswordCredential exists = Find_credential_byUser(username);
+
+            if (exists == null)
+            {
+                return false;
+            }
+            else
+            {
+                passwordVault.Remove(exists);
+
+                return true;
+            }
+        }
+
 
     }
 }

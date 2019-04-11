@@ -32,13 +32,7 @@ namespace Pass.Views
 
         private void Button_Forget_User_Click(object sender, RoutedEventArgs e)
         {
-            // Remove it from Microsoft Passport
-            MicrosoftLoginHelper.RemovePassportAccountAsync(_activeUser);
 
-            // Remove it from the local accounts list and resave the updated list
-            UserHelper.RemoveUser(_activeUser);
-
-            Debug.WriteLine("User " + _activeUser.Username + " deleted.");
         }
     }
 }

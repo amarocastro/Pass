@@ -15,59 +15,47 @@ namespace Pass.Views
     /// </summary>
     public sealed partial class LoginPage : Page
     {
-        private User _user;
-        
+             
         public LoginPage()
         {
             this.InitializeComponent();
         }
 
-        protected override async void OnNavigatedTo(NavigationEventArgs e)
-        {
-            // Check Microsoft Passport is setup and available on this machine
-            if (await MicrosoftLoginHelper.MicrosoftLoginAvailableCheckAsync())
-            {
-            }
-            else
-            {
-                // Microsoft Passport is not setup so inform the user
-                /*PassportStatus.Background = new SolidColorBrush(Windows.UI.Color.FromArgb(255, 50, 170, 207));
-                PassportStatusText.Text = "Microsoft Passport is not setup!\n" +
-                    "Please go to Windows Settings and set up a PIN to use it.";*/
-                PassSignInButton.IsEnabled = false;
-            }
-        }
-
         private void PassSignInButton_Click(object sender, RoutedEventArgs e)
         {
             ErrorMessage.Text = "";
-            SignInPass();
-        }
+            string username = UsernameTextBox.Text;
+            string password = PasswordTextBox.Text;
+            bool succesfull = SignInPass(username,password);
 
-        private async void SignInPass()
-        {
-            if (UserHelper.ValidateUserCredentials(PasswordTextBox.Text))
+            if(succesfull == true)
             {
-                // Create and add a new local account
-                _user = UserHelper.AddUser(PasswordTextBox.Text);
-                Debug.WriteLine("Successfully signed in with traditional credentials and created local account instance!");
-
-                if (await MicrosoftLoginHelper.CreatePassKeyAsync(PasswordTextBox.Text))
-                {
-                   Debug.WriteLine("Successfully signed in with Microsoft Passport!");
-                   Frame.Navigate(typeof(MainPage), _user);
-                }
+                Frame.Navigate(typeof(MainPage));
             }
             else
             {
-                ErrorMessage.Text = "Invalid Credentials";
+                ErrorMessage.Text = "Wrong credentials";
             }
+        }
+
+        private bool SignInPass(string username, string password)
+        {
+            CredentialHelper credentialManager = new CredentialHelper();
+            bool is_valid = credentialManager.validateUser(username,password);
+
+
+            return is_valid;
         }
 
         private void RegisterButtonTextBlock_OnPointerPressed(object sender, PointerRoutedEventArgs e)
         {
             ErrorMessage.Text = "";
             Frame.Navigate(typeof(RegisterPage));
+        }
+
+        private void TextBlock_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
