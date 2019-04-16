@@ -3,7 +3,9 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Pass.Utils;
 using Pass.Model;
-// La plantilla de elemento Página en blanco está documentada en https://go.microsoft.com/fwlink/?LinkId=234238
+using Windows.UI.Xaml.Media;
+using System.Drawing;
+
 
 namespace Pass.Views
 {
@@ -19,23 +21,26 @@ namespace Pass.Views
 
         CredentialHelper credentialManager = new CredentialHelper();
 
-        private async void RegisterButton_Click_Async(object sender, RoutedEventArgs e)
+        private void RegisterButton_Click_Async(object sender, RoutedEventArgs e)
         {
             ErrorMessage.Text = "";
-            string username;
-            string password;
-             
-            
+           
+            string username = UsernameTextBox.Text;
+            string password1 = PasswordTextBox1.Password;
+            string password2 = PasswordTextBox1.Password;
 
-            if (!string.IsNullOrEmpty(UsernameTextBox.Text))
+            if (!string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password1) && !string.IsNullOrEmpty(password2))
             {
-                //Register a new account
-                username = UsernameTextBox.Text;
-                password = PasswordTextBox.Text;
-                //Register new account with Microsoft Passport
-                credentialManager.Add_Credential(username, password);
-                //Navigate to the Welcome Screen. 
-                Frame.Navigate(typeof(LoginPage));
+                if (password1 != password2)
+                {
+                    ErrorMessage.Foreground = new SolidColorBrush(Windows.UI.Colors.Red);
+                    ErrorMessage.Text = "The passwords are different";
+                }
+                else
+                {
+                    credentialManager.Add_Credential(username, password1);
+                    Frame.Navigate(typeof(LoginPage));
+                }
             }
             else
             {

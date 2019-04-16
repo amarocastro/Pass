@@ -12,17 +12,20 @@
         <StackPanel Orientation="Vertical" VerticalAlignment="Center">
             <TextBlock x:Name="Title" Text="Register New Pass" FontSize="24" Margin="4" TextAlignment="Center"/>
 
-            <TextBlock x:Name="ErrorMessage" Text="" FontSize="20" Margin="4" Foreground="Red" TextAlignment="Center"/>
-
-            <TextBlock Text="Enter your new username below" Margin="0,0,0,20"
+            <TextBlock x:Name="ErrorMessage" Text="" FontSize="20" Margin="4" TextAlignment="Center"
+                       Height="50" Width="300"/>
+            <TextBlock Text="Enter your new username below" Margin="600,0,600,0"
+               TextWrapping="Wrap" Width="300" 
+               TextAlignment="Center" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.5,2.429" HorizontalAlignment="Stretch"/>
+            <TextBox x:Name="UsernameTextBox" Margin="625,0,625,0" Width="250" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+            <TextBlock Text="Enter your new password below" Margin="600,0,600,0"
                TextWrapping="Wrap" Width="300"
-               TextAlignment="Center" VerticalAlignment="Center" FontSize="16"/>
-            <TextBox x:Name="UsernameTextBox" Margin="4" Width="250"/>
-
-            <TextBlock Text="Enter your new password below" Margin="0,0,0,20"
+               TextAlignment="Center" VerticalAlignment="Top" FontSize="16" HorizontalAlignment="Stretch"/>
+            <PasswordBox x:Name="PasswordTextBox1" Margin="4" Width="250" PasswordChar="*"/>
+            <TextBlock Text="Repeat your password below" Margin="600,0,600,0"
                TextWrapping="Wrap" Width="300"
-               TextAlignment="Center" VerticalAlignment="Center" FontSize="16"/>
-            <TextBox x:Name="PasswordTextBox" Margin="4" Width="250"/>
+               TextAlignment="Center" VerticalAlignment="Top" FontSize="16" HorizontalAlignment="Stretch"/>
+            <PasswordBox x:Name="PasswordTextBox2" Margin="4" Width="250" PasswordChar="*"/>
 
             <Button x:Name="PassRegisterButton" Content="Register" Background="DodgerBlue" Foreground="White"
         Click="RegisterButton_Click_Async" Width="80" HorizontalAlignment="Center" Margin="0,20"/>

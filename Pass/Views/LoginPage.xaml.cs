@@ -25,7 +25,7 @@ namespace Pass.Views
         {
             ErrorMessage.Text = "";
             string username = UsernameTextBox.Text;
-            string password = PasswordTextBox.Text;
+            string password = PasswordTextBox.Password;
             bool succesfull = SignInPass(username,password);
 
             if(succesfull == true)
