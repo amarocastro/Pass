@@ -12,17 +12,22 @@
         <StackPanel Orientation="Vertical"
                     VerticalAlignment="Center">
             <TextBlock x:Name="ErrorMessage" Text="" FontSize="20" Margin="4" Foreground="Red" TextAlignment="Center"/>
-            <TextBlock Text="Enter your username below" Margin="625,0,678,0"
+            
+            <TextBlock Text="Enter your username below" 
                TextWrapping="Wrap"
-               TextAlignment="Center" VerticalAlignment="Center" FontSize="16"/>
-            <TextBox x:Name="UsernameTextBox" Margin="625,0,625,0" Width="250"/>
-            <TextBlock Text="Enter your password below" Margin="600,0,600,0"
-               TextWrapping="Wrap" Width="300"
-               TextAlignment="Center" VerticalAlignment="Center" FontSize="16" SelectionChanged="TextBlock_SelectionChanged" HorizontalAlignment="Stretch"/>
-            <PasswordBox x:Name="PasswordTextBox" Margin="625,0,625,0" Width="250" RenderTransformOrigin="0.52,-0.969" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+               TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Stretch" FontSize="16"/>
+            <TextBox x:Name="UsernameTextBox" MaxWidth="250"/>
+           
+            <TextBlock Text="Enter your password below" Margin="0,10,0,0"
+               TextWrapping="Wrap" MaxWidth="300"
+               TextAlignment="Center" VerticalAlignment="Center" FontSize="16" 
+                       SelectionChanged="TextBlock_SelectionChanged" HorizontalAlignment="Stretch"/>
+            <PasswordBox x:Name="PasswordTextBox" MaxWidth="250" RenderTransformOrigin="0.52,-0.969" 
+                         HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
 
             <Button x:Name="PassSignInButton" Content="Login" Background="DodgerBlue" Foreground="White"
-        Click="PassSignInButton_Click" Width="80" HorizontalAlignment="Center" Margin="0,20"/>
+                Click="PassSignInButton_Click" MaxWidth="80" HorizontalAlignment="Center" Margin="0,20,0,20"/>
+            
             <TextBlock Text="First time in Passs?"
                 TextAlignment="Center" VerticalAlignment="Center" FontSize="16"/>
             <TextBlock x:Name="RegisterButtonTextBlock" Text="Register now"

@@ -30,7 +30,7 @@ namespace Pass.Views
 
             if(succesfull == true)
             {
-                Frame.Navigate(typeof(MainPage));
+                Frame.Navigate(typeof(MainPage), username);
             }
             else
             {

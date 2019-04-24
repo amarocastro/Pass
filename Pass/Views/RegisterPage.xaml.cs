@@ -27,25 +27,34 @@ namespace Pass.Views
            
             string username = UsernameTextBox.Text;
             string password1 = PasswordTextBox1.Password;
-            string password2 = PasswordTextBox1.Password;
+            string password2 = PasswordTextBox2.Password;
 
             if (!string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password1) && !string.IsNullOrEmpty(password2))
             {
-                if (password1 != password2)
+                if (User_exists(username))
                 {
-                    ErrorMessage.Foreground = new SolidColorBrush(Windows.UI.Colors.Red);
-                    ErrorMessage.Text = "The passwords are different";
+                    ErrorMessage.Text = "The username is taken";
                 }
-                else
+                else if (password1.Equals(password2))
                 {
                     credentialManager.Add_Credential(username, password1);
                     Frame.Navigate(typeof(LoginPage));
                 }
+                else
+                {
+                    ErrorMessage.Text = "The passwords are different";
+                }
             }
+            
             else
             {
-                ErrorMessage.Text = "Please enter a username";
+                ErrorMessage.Text = "Please complete all fields";
             }
+        }
+
+        private bool User_exists(string username)
+        {
+            return credentialManager.Exists_Credential(username);
         }
     }
 }

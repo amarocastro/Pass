@@ -29,13 +29,13 @@ namespace Pass
 
         /// Gets the navigation frame instance.
         public Frame AppFrame => this.ContentFrame;
-        private User _activeUser;
+        private string _activeUser;
         /// Navigates to the page corresponding to the tapped item.
         /// 
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            _activeUser = (User)e.Parameter;
+            _activeUser = (String)e.Parameter;
         }
 
         private void NavViewItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)

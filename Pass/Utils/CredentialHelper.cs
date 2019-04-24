@@ -21,9 +21,15 @@ namespace Pass.Utils
         private PasswordCredential Find_credential_byUser(String username)
         {
             PasswordCredential credential = null;
-            credential = passwordVault.Retrieve(resourceName,username);
-
-            return credential;
+            try
+            {
+                credential = passwordVault.Retrieve(resourceName, username);
+                return credential;
+            }
+            catch(Exception ex)
+            {
+                return credential;
+            }            
         }
 
         public bool validateUser(string username, string password)
@@ -42,14 +48,11 @@ namespace Pass.Utils
             }
 
             return is_valid;
-
-
         }
 
-        public Boolean Delete_Credential(String username, String password)
+        public Boolean Exists_Credential(String username)
         {
             PasswordCredential exists = Find_credential_byUser(username);
-
             if (exists == null)
             {
                 return false;
@@ -59,6 +62,22 @@ namespace Pass.Utils
                 passwordVault.Remove(exists);
 
                 return true;
+            }
+        }
+
+        public Boolean Delete_Credential(String username, String password)
+        {
+            Boolean exists = Exists_Credential(username);
+
+            if (exists)
+            {
+                PasswordCredential credential = Find_credential_byUser(username);
+                passwordVault.Remove(credential);
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
 
