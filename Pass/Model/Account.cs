@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ClassLib_Pass
+namespace Pass.Model
 {
     public class Account
     {
@@ -35,9 +35,13 @@ namespace ClassLib_Pass
             set => this.note = value;
         }
 
-        public Account()
+        public Account(string name, string login_name, string email, string pass, string note)
         {
-           
+            this.name = name;
+            this.login_name = login_name;
+            this.email = email;
+            this.password = pass;
+            this.note = note;           
         }
 
     }

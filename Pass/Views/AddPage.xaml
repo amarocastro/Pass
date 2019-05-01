@@ -13,7 +13,7 @@
 
     <Grid>
         
-        <StackPanel>
+        <StackPanel Margin="24,24,0,0">
             <TextBlock Text="Add Account" Style="{StaticResource TitleTextBlockStyle}"/>
             <TextBox x:Name="SiteName" Header= "Site Name" Margin="0,24,0,0" 
                      MaxLength="320" Width="400" 
@@ -36,9 +36,10 @@
                      HorizontalAlignment="Left" 
                      InputScope="Text"/>
             <Button x:Name="saveButton"
-                MinWidth="200"
+                Margin="0,24,0,0"
                 MaxWidth="200"
-                >Unclok</Button>
+                Click="AddNewAccount"
+                >Save</Button>
         </StackPanel>
         
     </Grid>

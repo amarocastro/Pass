@@ -1,18 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
-
+﻿using Windows.UI.Xaml.Controls;
+using Pass.Model;
 // La plantilla de elemento Página en blanco está documentada en https://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace Pass.Views
@@ -26,5 +13,20 @@ namespace Pass.Views
         {
             this.InitializeComponent();
         }
+
+        public void AddNewAccount()
+        {
+            string site_name = SiteName.Text;
+            string account_name = AccountName.Text;
+            string email = Email.Text;
+            string password = Password.Text;
+            string description = Description.Text;
+
+            Account newAccount = new Account(site_name, account_name, email, password, description);
+
+
+        }
+
+
     }
 }
