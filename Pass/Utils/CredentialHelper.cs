@@ -26,7 +26,7 @@ namespace Pass.Utils
                 credential = passwordVault.Retrieve(resourceName, username);
                 return credential;
             }
-            catch(Exception ex)
+            catch(Exception e)
             {
                 return credential;
             }            

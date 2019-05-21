@@ -1,5 +1,8 @@
-﻿using Windows.UI.Xaml.Controls;
+﻿using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Input;
 using Pass.Model;
+using Pass.Utils;
 // La plantilla de elemento Página en blanco está documentada en https://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace Pass.Views
@@ -9,13 +12,17 @@ namespace Pass.Views
     /// </summary>
     public sealed partial class AddPage : Page
     {
+        
         public AddPage()
         {
             this.InitializeComponent();
         }
 
-        public void AddNewAccount()
+        public void AddAccount(object sender, RoutedEventArgs e)
         {
+            FileHelper fileHelper = new FileHelper();
+            fileHelper.OpenData();
+
             string site_name = SiteName.Text;
             string account_name = AccountName.Text;
             string email = Email.Text;
@@ -24,7 +31,8 @@ namespace Pass.Views
 
             Account newAccount = new Account(site_name, account_name, email, password, description);
 
-
+            fileHelper.AddItem(newAccount);
+            //Frame.Navigate(typeof(HomePage));
         }
 
 

@@ -38,7 +38,7 @@
             <Button x:Name="saveButton"
                 Margin="0,24,0,0"
                 MaxWidth="200"
-                Click="AddNewAccount"
+                Click="AddAccount"
                 >Save</Button>
         </StackPanel>
         
