@@ -12,35 +12,45 @@ using System.IO;
 
 namespace Pass.Utils
 {
-    
-
-    public class FileHelper
+    public static class FileHelper
     {
-        private StorageFolder localFolder;
-        private StorageFile localFile;
-        private string accountsData;
-        private JsonTextReader jsonReader;
-        private JsonTextWriter jsonWriter;
-        private List<Account> accountsList;
+        private static string jsonAccountData;
+        private static List<Account> listAccountData;
+        private static StorageFolder localFolder;
+        private static StorageFile localFile;
 
-        public async void OpenData()
+        public static List<Account> OpenData()
         {
-            localFolder = await Package.Current.InstalledLocation.CreateFolderAsync("LocalData", CreationCollisionOption.OpenIfExists);
+            OpenFiles();
+            ReadFile();
+            
+            var list = DeserializeJson(jsonAccountData);
+
+            listAccountData = list;
+
+            return listAccountData;
+        }
+
+        private static async void OpenFiles()
+        {
+            localFolder = await ApplicationData.Current.LocalFolder.CreateFolderAsync("LocalData");
+            Console.WriteLine(localFolder);
             localFile = await localFolder.CreateFileAsync("data.json", CreationCollisionOption.OpenIfExists);
-            GetData();
-            UpdateJsonReaderWriter();
         }
 
-        private async void GetData()
+        private static async void ReadFile()
         {
-            string JsonText = await FileIO.ReadTextAsync(this.localFile);
-
-            this.accountsData = JsonText;
-            this.accountsList = JsonConvert.DeserializeObject<List<Account>>(JsonText);
-
+            jsonAccountData = await FileIO.ReadTextAsync(localFile);
         }
 
-        private void UpdateJsonReaderWriter()
+        private static List<Account> DeserializeJson(string json)
+        {
+            List<Account> list = JsonConvert.DeserializeObject<List<Account>>(json);
+
+            return list;
+        }
+
+        /*private void UpdateJsonReaderWriter()
         {
             this.jsonReader = new JsonTextReader(new StringReader(this.accountsData));
             StringBuilder sb = new StringBuilder();
@@ -63,6 +73,6 @@ namespace Pass.Utils
             //jsonElement = JsonConvert.SerializeObject(element);
             this.accountsList.Add(element);
             SaveData();
-        }
+        }*/
     }
 }

@@ -3,32 +3,38 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.Serialization;
 
 namespace Pass.Model
 {
+    [DataContract]
     public class Account
     {
+        [DataMember]
         private string name
         {
             get => this.name;
             set => this.name = value;
         }
+        [DataMember]
         private string login_name
         {
             get => this.login_name;
             set => this.login_name = value;
         }
+        [DataMember]
         private string email
         {
             get => this.email;
             set => this.email = value;
         }
+        [DataMember]
         private string password
         {
             get => this.password;
             set => this.password = value;
         }
-
+        [DataMember]
         private string note
         {
             get => this.note;

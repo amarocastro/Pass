@@ -1,18 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Xaml;
+using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
-
+using Pass.Utils;
+using Pass.Model;
 // La plantilla de elemento Página en blanco está documentada en https://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace Pass.Views
@@ -25,6 +16,20 @@ namespace Pass.Views
         public HomePage()
         {
             this.InitializeComponent();
+            LoadData();
+        }
+
+        private void LoadData()
+        {
+            //ListBox listBox = stuff_List.;
+            List<Account> accountList = FileHelper.OpenData();
+            //int listSize = accountList.Count;
+            //listBox.
+
+            foreach(var item in accountList)
+            {
+                Console.WriteLine(item);
+            }
         }
     }
 }

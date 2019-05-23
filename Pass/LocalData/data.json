@@ -1,0 +1,9 @@
+[
+  {
+    "name": "test",
+    "login_name": "testusername",
+    "email": "testmail",
+    "password": "testpassword",
+    "note": "testnote"
+  }
+]
