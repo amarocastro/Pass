@@ -33,8 +33,8 @@ namespace Pass.Utils
 
         private static async void OpenFiles()
         {
-            localFolder = await ApplicationData.Current.LocalFolder.CreateFolderAsync("LocalData");
-            Console.WriteLine(localFolder);
+            localFolder = await ApplicationData.Current.LocalFolder.CreateFolderAsync("LocalData",CreationCollisionOption.OpenIfExists);
+       
             localFile = await localFolder.CreateFileAsync("data.json", CreationCollisionOption.OpenIfExists);
         }
 

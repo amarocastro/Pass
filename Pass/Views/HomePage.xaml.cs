@@ -21,15 +21,10 @@ namespace Pass.Views
 
         private void LoadData()
         {
-            //ListBox listBox = stuff_List.;
+            
             List<Account> accountList = FileHelper.OpenData();
-            //int listSize = accountList.Count;
-            //listBox.
 
-            foreach(var item in accountList)
-            {
-                Console.WriteLine(item);
-            }
+            stuff_List.ItemsSource = accountList;
         }
     }
 }

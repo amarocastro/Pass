@@ -13,32 +13,27 @@ namespace Pass.Model
         [DataMember]
         private string name
         {
-            get => this.name;
-            set => this.name = value;
+            get; set;
         }
         [DataMember]
         private string login_name
         {
-            get => this.login_name;
-            set => this.login_name = value;
+            get; set;
         }
         [DataMember]
         private string email
         {
-            get => this.email;
-            set => this.email = value;
+            get; set;
         }
         [DataMember]
         private string password
         {
-            get => this.password;
-            set => this.password = value;
+            get; set;
         }
         [DataMember]
         private string note
         {
-            get => this.note;
-            set => this.note = value;
+            get; set;
         }
 
         public Account(string name, string login_name, string email, string pass, string note)
