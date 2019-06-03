@@ -18,9 +18,8 @@ namespace Pass.Views
             this.InitializeComponent();
         }
 
-        public void AddAccount(object sender, RoutedEventArgs e)
+        private async void AddAccount(object sender, RoutedEventArgs e)
         {
-            //FileHelper fileHelper = new FileHelper();
             //fileHelper.OpenData();
 
             string site_name = SiteName.Text;
@@ -31,7 +30,7 @@ namespace Pass.Views
 
             Account newAccount = new Account(site_name, account_name, email, password, description);
 
-            //fileHelper.AddItem(newAccount);
+            bool confirmation = await FileHelper.AddItem(newAccount);
             //Frame.Navigate(typeof(HomePage));
         }
 

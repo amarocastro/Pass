@@ -1,55 +1,65 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Windows.Storage;
-using Windows.ApplicationModel;
-using Windows.Data.Json;
+﻿using Newtonsoft.Json;
 using Pass.Model;
-using Newtonsoft.Json;
+using Windows.Storage;
+using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace Pass.Utils
 {
     public static class FileHelper
     {
-        private static string jsonAccountData;
-        private static List<Account> listAccountData;
-        private static StorageFolder localFolder;
-        private static StorageFile localFile;
+        //private static string accountDataPath = "ms-appdata:///local/data.json";
+        private static List<Account> accountsList = new List<Account>();
+        private static String json;
+        private static StorageFile storageFile;
+        //private static bool dataExists = File.Exists(accountDataPath);
 
-        public static List<Account> OpenData()
+        public static async Task<List<Account>> OpenData()
         {
-            OpenFiles();
-            ReadFile();
-            
-            var list = DeserializeJson(jsonAccountData);
+            storageFile = await ApplicationData.Current.LocalFolder.CreateFileAsync("data.json",CreationCollisionOption.OpenIfExists);
+            json = await FileIO.ReadTextAsync(storageFile);
 
-            listAccountData = list;
+            if (!String.IsNullOrEmpty(json))
+            {
+                accountsList = JsonConvert.DeserializeObject<List<Account>>(json);
+            }
 
-            return listAccountData;
+            return accountsList;
+            /*if (!dataExists)
+            {
+                File.Create(accountDataPath);
+                dataExists = File.Exists(accountDataPath);
+            }*/
+
+            /*if (dataExists)
+            {
+                try
+                {
+                    string accountsData = await File.ReadAllTextAsync(accountDataPath);
+                    accountsList = JsonConvert.DeserializeObject<List<Account>>(accountsData);
+                }
+                catch(ArgumentException e)
+                {
+                    //The file is empty, the list will be empty
+                }
+            }*/
+
         }
 
-        private static async void OpenFiles()
+        public static async Task<bool> AddItem(Account account)
         {
-            localFolder = await ApplicationData.Current.LocalFolder.CreateFolderAsync("LocalData",CreationCollisionOption.OpenIfExists);
-       
-            localFile = await localFolder.CreateFileAsync("data.json", CreationCollisionOption.OpenIfExists);
+            accountsList.Add(account);
+            json = JsonConvert.SerializeObject(accountsList);
+
+            await FileIO.WriteTextAsync(storageFile, json);
+
+            return true;
         }
 
-        private static async void ReadFile()
-        {
-            jsonAccountData = await FileIO.ReadTextAsync(localFile);
-        }
 
-        private static List<Account> DeserializeJson(string json)
-        {
-            List<Account> list = JsonConvert.DeserializeObject<List<Account>>(json);
-
-            return list;
-        }
-
+        
         /*private void UpdateJsonReaderWriter()
         {
             this.jsonReader = new JsonTextReader(new StringReader(this.accountsData));

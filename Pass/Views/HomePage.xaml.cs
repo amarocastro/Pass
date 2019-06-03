@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Pass.Utils;
 using Pass.Model;
@@ -16,15 +17,16 @@ namespace Pass.Views
         public HomePage()
         {
             this.InitializeComponent();
-            LoadData();
         }
 
-        private void LoadData()
+        private async void LoadData(Object sender, RoutedEventArgs e)
         {
-            
-            List<Account> accountList = FileHelper.OpenData();
-
-            stuff_List.ItemsSource = accountList;
+            List<Account> accountList = await FileHelper.OpenData();
+            if (!(accountList.Count == 0))
+            {
+                stuff_List.ItemsSource = accountList;
+            }
         }
+
     }
 }

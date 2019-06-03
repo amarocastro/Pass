@@ -4,13 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
+using Newtonsoft.Json;
 
 namespace Pass.Model
 {
     [DataContract]
     public class Account
     {
-        [DataMember]
+        [JsonProperty("name")]
         private string name
         {
             get; set;
