@@ -3,23 +3,25 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Pass.Views"
+    xmlns:model="using:Pass.Model"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Loaded="LoadData"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <ListBox x:Name="stuff_List"
-                 Background="Black">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Margin="5">
-                        <TextBlock Text="{Binding name}"/>
+        <ListView ItemsSource="{x:Bind ViewModel.Accounts}">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="model:Account">
+                    <StackPanel Margin="6">
+                        <SymbolIcon Symbol="Account" Margin="0,0,12,0"/>
+                        <StackPanel>
+                            <TextBlock Text="{x:Bind model:Account}" FontWeight="Bold"/>
+                            <TextBlock Text="{x:Bind model:Account}"/>
+                        </StackPanel>
                     </StackPanel>
                 </DataTemplate>
-            </ListBox.ItemTemplate>
-            
-        </ListBox>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </Page>
