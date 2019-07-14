@@ -15,7 +15,7 @@ namespace Pass.Utils
         private static String json;
         private static StorageFile storageFile;
         //private static bool dataExists = File.Exists(accountDataPath);
-
+        
         public static async Task<List<Account>> OpenData()
         {
             storageFile = await ApplicationData.Current.LocalFolder.CreateFileAsync("data.json",CreationCollisionOption.OpenIfExists);

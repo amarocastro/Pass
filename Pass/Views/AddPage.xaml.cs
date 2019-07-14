@@ -34,6 +34,5 @@ namespace Pass.Views
             //Frame.Navigate(typeof(HomePage));
         }
 
-
     }
 }

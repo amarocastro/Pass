@@ -6,6 +6,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Pass.Views;
+using Pass.Utils;
 using Pass.Model;
 
 // La plantilla de elemento Página en blanco está documentada en https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0xc0a
@@ -21,17 +22,15 @@ namespace Pass
         {
             this.InitializeComponent();
             //Iniciar en la página Home
+            DbHelper.InitializeDB();
+
             Loaded += (sender, args) =>
             {
                 NavView.SelectedItem = HomePage;
             };
         }
-
-        /// Gets the navigation frame instance.
         public Frame AppFrame => this.ContentFrame;
-        private string _activeUser;
-        /// Navigates to the page corresponding to the tapped item.
-        /// 
+        private string _activeUser; //elemento del menu seleccionado
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {

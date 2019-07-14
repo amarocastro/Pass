@@ -28,6 +28,7 @@ namespace Pass.Utils
             }
             catch(Exception e)
             {
+                e.Message.ToString();
                 return credential;
             }            
         }
